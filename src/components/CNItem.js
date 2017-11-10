@@ -1,11 +1,36 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types';
+import {ALL, GOOD, ASK, SHARE, JOB, DEV} from './ArticleTypes.js'
 
 export default class extends React.Component {
-	render() {
-		let pic = {
-			url: 'http://pic2.ooopic.com/12/13/96/44bOOOPIC55_1024.jpg'
+	static propTypes = {
+		avatarUrl: PropTypes.string.isRequired,
+		authorName: PropTypes.string.isRequired,
+		updateTime: PropTypes.string.isRequired,
+		articleTitle: PropTypes.string.isRequired,
+		articleType: PropTypes.string.isRequired,
+		visitCount: PropTypes.number.isRequired,
+		replyCount: PropTypes.number.isRequired
+	}
+
+	getArticleTypeTxt (type) {
+		switch (type.toUpperCase()) {
+			case SHARE:
+				return '分享'
+			case GOOD:
+				return '精华'
+			case ASK:
+				return '问答'
+			case JOB:
+				return '招聘'
+			case DEV:
+				return '客户端测试'
 		}
+	}
+
+	render() {
+		const {avatarUrl, authorName, updateTime, articleTitle, articleType, visitCount, replyCount} = this.props;
 
 		return (
 			<View style={styles.item}>
@@ -14,27 +39,27 @@ export default class extends React.Component {
 					<View style={styles.itemTopL}>
 						
 						<View style={styles.itemThumb}>
-							<Image source={pic} style={styles.img} />
+							<Image source={{url: avatarUrl}} style={styles.img} />
 						</View>
 
 						<View style={styles.infos}>
-							<Text style={styles.nickName}>jelly Chow</Text>
+							<Text style={styles.nickName}>{authorName}</Text>
 
 							<View style={styles.simpleInfo}>
-								<Text style={styles.time}>19小时前</Text>
-								<Text style={styles.tag}>job</Text>
+								<Text style={styles.time}>{updateTime}</Text>
+								<Text style={styles.tag}>{this.getArticleTypeTxt(articleType)}</Text>
 							</View>
 						</View>
 					</View>
 					
 					<View style={styles.itemTopR}>
-						<Text style={styles.commentNums}>1/67</Text>
+						<Text style={styles.commentNums}>{replyCount}/{visitCount}</Text>
 					</View>
 
 				</View>	
 
 				<View style={styles.itemBtm}>
-					<Text>天猫前端招聘（含实习）</Text>
+					<Text>{articleTitle}</Text>
 				</View>
 			</View>
 		)
@@ -44,7 +69,7 @@ export default class extends React.Component {
 const styles = StyleSheet.create({
 	item: {		
 		flex: 1,
-		borderBottomColor: '#000',
+		borderBottomColor: '#e9e8f0',
 		borderBottomWidth: 1,
 		paddingBottom: 10,
 		paddingTop: 10,

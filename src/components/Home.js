@@ -4,6 +4,8 @@ import {StackNavigator} from 'react-navigation';
 import axios from 'axios';
 import CNHeader from './CNHeader.js';
 import CNNews from './CNNews.js';
+import Person from './Person.js';
+import {ALL, GOOD} from './ArticleTypes.js'
 
 class HomeScreen extends React.Component {
 	static navigationOptions = {
@@ -13,28 +15,51 @@ class HomeScreen extends React.Component {
 	constructor(props) {
         super(props);
         this.state = {
-        	ItemsData: []
+        	ItemsData: [],
+        	selectedType: ALL
         }
+
+        this.selectNav = this.selectNav.bind(this)
     }
 
-	componentWillMount () {
+    selectNav (type) {
+	   this.getArticles(type, 1, 10, true)
+	}
+
+	getArticles (type = ALL, page = 1, limit = 10, isChangeType = false) {
 		let that = this
-		axios.get('https://cnodejs.org/api/v1/topics')
+
+		axios.get('https://cnodejs.org/api/v1/topics', {
+				params: {
+					page, limit,
+					tab: type.toLowerCase()
+				}
+			})
 			.then(res => res.data)
 			.then(res => {
 				if (res.success) {
 					that.setState({
-						ItemsData: res.data
+					   ItemsData: res.data
 					})
-				}	
+
+					if (isChangeType) {
+					  that.setState({
+				        selectedType: type
+				      })
+					}
+				}
 			})
+	}
+
+	componentWillMount () {
+		this.getArticles()
 	}
 
 	render() {
 		return (
 			<View style={styles.page}>
-				<CNHeader style={styles.header} />
-				<CNNews style={styles.news} />
+				<CNHeader clickNav={this.selectNav} selectedType={this.state.selectedType} style={styles.header} />
+				<CNNews ItemsData={this.state.ItemsData} style={styles.news} />
 			</View>
 	    );
 	}
