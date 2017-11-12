@@ -3,20 +3,20 @@ import {View, Text} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 
 
-class PersonScreen extends React.Component {
+class MessageScreen extends React.Component {
 	render () {
 		return (
 			<View>
-				<Text>Person</Text>
+				<Text>Message</Text>
 			</View>
 		)
 	}
 }
 
-const Person = StackNavigator({
-	PersonNav: {
-		screen: PersonScreen
+const Message = StackNavigator({
+	MessageNav: {
+		screen: MessageScreen
 	}
 });
 
-export default Person;
+export default Message;

@@ -1,14 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, AppRegistry} from 'react-native';
 import {StackNavigator, TabNavigator, DrawerNavigator} from 'react-navigation';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Home from './src/components/Home.js';
+import Tabs from './src/components/TabNavigation.js';
 
 
 export default class App extends React.Component {
   render() {
     return (
-      <Home />
+      <Tabs />
     )
   }
 }
@@ -21,3 +21,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+AppRegistry.registerComponent('App', () => App);

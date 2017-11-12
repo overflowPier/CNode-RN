@@ -3,20 +3,20 @@ import {View, Text} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 
 
-class PersonScreen extends React.Component {
+class PublishScreen extends React.Component {
 	render () {
 		return (
 			<View>
-				<Text>Person</Text>
+				<Text>Publish</Text>
 			</View>
 		)
 	}
 }
 
-const Person = StackNavigator({
-	PersonNav: {
-		screen: PersonScreen
+const Publish = StackNavigator({
+	PublishNav: {
+		screen: PublishScreen
 	}
 });
 
-export default Person;
+export default Publish;
