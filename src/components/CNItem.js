@@ -1,17 +1,32 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {
+	View, 
+	Text, 
+	Image, 
+	TouchableHighlight, 
+	StyleSheet
+} from 'react-native';
 import PropTypes from 'prop-types';
-import {ALL, GOOD, ASK, SHARE, JOB, DEV} from './ArticleTypes.js'
+import {
+	ALL, 
+	GOOD, 
+	ASK, 
+	SHARE, 
+	JOB, 
+	DEV
+} from './ArticleTypes.js';
 
 export default class extends React.Component {
 	static propTypes = {
+		articleId: PropTypes.string.isRequired,
 		avatarUrl: PropTypes.string.isRequired,
 		authorName: PropTypes.string.isRequired,
 		updateTime: PropTypes.string.isRequired,
 		articleTitle: PropTypes.string.isRequired,
 		articleType: PropTypes.string.isRequired,
 		visitCount: PropTypes.number.isRequired,
-		replyCount: PropTypes.number.isRequired
+		replyCount: PropTypes.number.isRequired,
+		clickArticle: PropTypes.func.isRequired
 	}
 
 	getArticleTypeTxt (type) {
@@ -30,38 +45,39 @@ export default class extends React.Component {
 	}
 
 	render() {
-		const {avatarUrl, authorName, updateTime, articleTitle, articleType, visitCount, replyCount} = this.props;
+		const {articleId, avatarUrl, authorName, updateTime, articleTitle, articleType, visitCount, replyCount, clickArticle} = this.props;
 
 		return (
-			<View style={styles.item}>
-				<View style={styles.itemTop}>
-					
-					<View style={styles.itemTopL}>
+			<TouchableHighlight underlayColor='#eee' activeOpacity={0.9} onPress={() => {clickArticle(articleId)}}>
+				<View style={styles.item}>
+					<View style={styles.itemTop}>
 						
-						<View style={styles.itemThumb}>
-							<Image source={{url: avatarUrl}} style={styles.img} />
-						</View>
+						<View style={styles.itemTopL}>
+							
+							<View style={styles.itemThumb}>
+								<Image source={{url: avatarUrl}} style={styles.img} />
+							</View>
 
-						<View style={styles.infos}>
-							<Text style={styles.nickName}>{authorName}</Text>
+							<View style={styles.infos}>
+								<Text style={styles.nickName}>{authorName}</Text>
 
-							<View style={styles.simpleInfo}>
-								<Text style={styles.time}>{updateTime}</Text>
-								<Text style={styles.tag}>{this.getArticleTypeTxt(articleType)}</Text>
+								<View style={styles.simpleInfo}>
+									<Text style={styles.time}>{updateTime}</Text>
+									<Text style={styles.tag}>{this.getArticleTypeTxt(articleType)}</Text>
+								</View>
 							</View>
 						</View>
-					</View>
-					
-					<View style={styles.itemTopR}>
-						<Text style={styles.commentNums}>{replyCount}/{visitCount}</Text>
-					</View>
+						
+						<View style={styles.itemTopR}>
+							<Text style={styles.commentNums}>{replyCount}/{visitCount}</Text>
+						</View>
+					</View>	
 
-				</View>	
-
-				<View style={styles.itemBtm}>
-					<Text>{articleTitle}</Text>
+					<View style={styles.itemBtm}>
+						<Text>{articleTitle}</Text>
+					</View>
 				</View>
-			</View>
+			</TouchableHighlight>
 		)
 	}
 }

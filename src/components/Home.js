@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, Button, Image, StyleSheet, AppRegistry} from 'react-native';
+import {
+	View, 
+	Text, 
+	Button, 
+	Image, 
+	StyleSheet, 
+	AppRegistry
+} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import axios from 'axios';
 import CNHeader from './CNHeader.js';
@@ -21,11 +28,16 @@ class HomeScreen extends React.Component {
 
         this.selectNav = this.selectNav.bind(this)
     }
-
+    /**
+      * 切换主页文章的类型
+    */
     selectNav (type) {
 	   this.getArticles(type, 1, 10, true)
 	}
-
+	
+	/**
+	  * 获取信息列表
+	*/
 	getArticles (type = ALL, page = 1, limit = 10, isChangeType = false) {
 		let that = this
 
@@ -51,6 +63,7 @@ class HomeScreen extends React.Component {
 			})
 	}
 
+
 	componentWillMount () {
 		this.getArticles()
 	}
@@ -58,8 +71,14 @@ class HomeScreen extends React.Component {
 	render() {
 		return (
 			<View style={styles.page}>
-				<CNHeader clickNav={this.selectNav} selectedType={this.state.selectedType} style={styles.header} />
-				<CNNews ItemsData={this.state.ItemsData} style={styles.news} />
+				<CNHeader 
+					clickNav={this.selectNav} 
+					selectedType={this.state.selectedType} 
+					style={styles.header} />
+				<CNNews
+					navigateObj={this.props.navigation.navigate}
+					ItemsData={this.state.ItemsData}
+					style={styles.news} />
 			</View>
 	    );
 	}

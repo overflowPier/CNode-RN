@@ -1,14 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, AppRegistry} from 'react-native';
-import {StackNavigator, TabNavigator, DrawerNavigator} from 'react-navigation';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Tabs from './src/components/TabNavigation.js';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Button, 
+  AppRegistry
+} from 'react-native';
+import {
+  StackNavigator, 
+  TabNavigator, 
+  DrawerNavigator
+} from 'react-navigation';
+import RootRooter from './src/RootRooter.js';
 
 
 export default class App extends React.Component {
   render() {
     return (
-      <Tabs />
+      <RootRooter />
     )
   }
 }
