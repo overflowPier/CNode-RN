@@ -1,7 +1,18 @@
 import React from 'react';
-import {View, Button, Text, Image, StyleSheet} from 'react-native';
+import {
+  View, 
+  TouchableHighlight, 
+  Text, 
+  Image, 
+  StyleSheet
+} from 'react-native';
 import PropTypes from 'prop-types';
-import {ALL, GOOD, SHARE, JOB} from './ArticleTypes.js'
+import {
+  ALL, 
+  GOOD, 
+  SHARE, 
+  JOB
+} from './ArticleTypes.js';
 
 export default class CNHeader extends React.Component {
   constructor (props) {
@@ -33,13 +44,14 @@ export default class CNHeader extends React.Component {
     const {selectedType, clickNav} = this.props;
     return (
       <View style={styles.header}>	
-         {this.state.navs.map((item, index) => <Button 
-         		style={{fontSize: 14 }}
-         		title={item.text}
-            color={selectedType == item.label.toUpperCase() ? '#222' : '#999'}
+         {this.state.navs.map((item, index) => <TouchableHighlight
          		key={'nav' + index}
+            style={styles.navItem}
+            underlayColor={'#CCC'}
          		onPress={() => {clickNav(item.label)}}
-         	/>)
+         	>
+            <Text style={styles.navItemText} color={selectedType == item.label.toUpperCase() ? '#222' : '#999'}>{item.text}</Text>
+          </TouchableHighlight>)
          }
       </View>
     )
@@ -47,22 +59,26 @@ export default class CNHeader extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	header: {	
-		paddingLeft: 20,
-		paddingRight: 20,
+	header: {
 		height: 60,
+    paddingTop: 23,
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'flex-end',
+		justifyContent: 'space-between',		
 		backgroundColor: '#F4F4F4',
     borderBottomWidth: 1,
     borderBottomColor: '#DDD'
 	},
 	navItem: {
-		color: '#666',
-    fontSize: 14
+    flex: 1
 	},
+  navItemText: {
+    flex: 1,
+    lineHeight: 27,
+    textAlign: 'center',
+    paddingBottom: 10,
+    color: '#999'
+  },
   navItemActive: {
     color: '#222'
   }

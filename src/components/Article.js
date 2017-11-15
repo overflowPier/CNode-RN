@@ -33,6 +33,14 @@ export default class Article extends React.Component {
 		})
 	}
 
+	stringReplaceAll (s1,s2) {
+		return s1.replace(new RegExp(s1,"gm"),s2);
+	}
+
+	getFilterHtmlContent (htmlString) {
+		return htmlString.replace(new RegExp('src="', 'gm'), 'src=\"http:').replace(new RegExp('\r', 'gm'), '')
+	}
+
 	render () {
 		// const {navigation} = this.props;
 
@@ -43,8 +51,8 @@ export default class Article extends React.Component {
 			>
 				<View style={htmlStyles.viewArticleCon}>
 					<HTMLView
-					  stylesheet={htmlStyles}
-					  value={this.state.articleHtml}
+					  stylesheet={htmlStyles}				  
+					  value={this.getFilterHtmlContent(this.state.articleHtml)}
 					/>
 
 					<CommentItem />

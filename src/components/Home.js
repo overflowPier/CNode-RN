@@ -56,7 +56,7 @@ class HomeScreen extends React.Component {
 
 					if (isChangeType) {
 					  that.setState({
-				        selectedType: type
+				        selectedType: type.toUpperCase()
 				      })
 					}
 				}

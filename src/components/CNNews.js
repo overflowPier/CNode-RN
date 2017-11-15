@@ -9,6 +9,9 @@ import {
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import CNItem from './CNItem';
+import {
+	SHARE
+} from './ArticleTypes.js';
 
 export default class CNNews extends React.Component {
 	static propTypes = {
@@ -65,7 +68,7 @@ export default class CNNews extends React.Component {
 					authorName={item.author.loginname}
 					updateTime={item.last_reply_at}
 					articleTitle={item.title}
-					articleType={item.tab}
+					articleType={!item.tab ? SHARE : item.tab}
 					visitCount={item.visit_count}
 					replyCount={item.reply_count}
 					clickArticle={this.clickArticle}

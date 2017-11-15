@@ -14,10 +14,10 @@ export default class CommentItem extends React.Component {
 		return (
 			<View style={styles.comItem}>
 				<View style={styles.comItemTop}>
-					<View style={styles.comNickName}>
+					<View color='#333' style={styles.comNickName}>
 						<Text>sssssss</Text>
 					</View>
-					<View style={styles.comBaseInfo}>
+					<View color='#666' style={styles.comBaseInfo}>
 						<View style={styles.thumbsUp}>
 							<Ionicons
 								name="md-thumbs-up"
@@ -58,8 +58,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between'		
 	},
 	comNickName: {
-		flex: 1,
-		color: '#333'
+		flex: 1
 	},
 	comItemBtm: {
 
@@ -67,8 +66,7 @@ const styles = StyleSheet.create({
 	comBaseInfo: {
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		color: '#666'
+		justifyContent: 'space-between'
 	},
 	thumbsUp: {
 		marginRight: 10

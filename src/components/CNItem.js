@@ -55,7 +55,7 @@ export default class extends React.Component {
 						<View style={styles.itemTopL}>
 							
 							<View style={styles.itemThumb}>
-								<Image source={{url: avatarUrl}} style={styles.img} />
+								<Image source={{uri: avatarUrl}} style={styles.img} />
 							</View>
 
 							<View style={styles.infos}>
@@ -116,6 +116,12 @@ const styles = StyleSheet.create({
 		marginTop: 5,
 		flexDirection: 'row',
 		alignItems: 'flex-start'
+	},
+	itemThumb: {
+		width: 60,
+		height: 60,
+		borderRadius: 4,
+		backgroundColor: '#eee'
 	},
 	time: {
 		paddingTop: 3

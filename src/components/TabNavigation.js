@@ -16,6 +16,7 @@ const Tabs = TabNavigator({
 			tabBarIcon: ({tintColor}) => (
 					<Ionicons 
 						 name="ios-cafe"   
+						 md="md-cafe"
 				         size={30}   //图片大小
 				         color={tintColor}  //图片颜色
 					/>
@@ -77,6 +78,23 @@ const Tabs = TabNavigator({
 				)
 		}
 	}
-})
+	}, {
+		tabBarPosition: 'bottom',
+		tabBarOptions: {
+			showIcon: true,		
+	        indicatorStyle: {
+	           height: 0  
+	        }, 
+	        style: {
+	           backgroundColor: '#DDD',
+	           height: 40
+	        },
+	        labelStyle: {
+	          fontSize: 10
+	        },
+	        inactiveBackgroundColor:'white',
+	        inactiveTintColor:'#aaa'
+	    }
+	})
 
 export default Tabs
