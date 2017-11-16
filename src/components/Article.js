@@ -19,7 +19,7 @@ export default class Article extends React.Component {
 		}
 	}
 
-	static navigationOptions = ({ navigation}) => {
+	static navigationOptions = ({navigation}) => {
 		console.log('++++++navigation', navigation.state.params)
 
 		return {
@@ -33,6 +33,7 @@ export default class Article extends React.Component {
 
 	componentDidMount () {
 		const {content, replies} = this.props.navigation.state.params;
+		console.log('---------------replies', replies)
 		this.setState({
 			articleHtml: content,
 			replies: replies

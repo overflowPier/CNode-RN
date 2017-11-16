@@ -15,6 +15,7 @@ import {
 	JOB, 
 	DEV
 } from './ArticleTypes.js';
+import {formateTimeString} from '../assets/js/util.js';
 
 export default class extends React.Component {
 	static propTypes = {
@@ -62,7 +63,7 @@ export default class extends React.Component {
 								<Text style={styles.nickName}>{authorName}</Text>
 
 								<View style={styles.simpleInfo}>
-									<Text style={styles.time}>{updateTime}</Text>
+									<Text style={styles.time}>{formateTimeString(updateTime)}</Text>
 									<Text style={styles.tag}>{this.getArticleTypeTxt(articleType)}</Text>
 								</View>
 							</View>

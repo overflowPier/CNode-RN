@@ -38,7 +38,7 @@ export default class CommentItem extends React.Component {
 									color="#900"
 									size={15}
 								/>
-								<Text>{ups.length}</Text>
+								<Text>{ups.length > 0 ? ups.length : ''}</Text>
 							</View>
 							<View style={styles.dateTime}>
 								<Text>
