@@ -14,7 +14,8 @@ export default class Article extends React.Component {
 		super(props);
 
 		this.state = {
-			articleHtml: ''
+			articleHtml: '',
+			replies: []
 		}
 	}
 
@@ -26,10 +27,15 @@ export default class Article extends React.Component {
 		}
 	}
 
+	static propTypes = {
+
+	}
+
 	componentDidMount () {
-		const {content} = this.props.navigation.state.params;
+		const {content, replies} = this.props.navigation.state.params;
 		this.setState({
-			articleHtml: content
+			articleHtml: content,
+			replies: replies
 		})
 	}
 
@@ -55,7 +61,9 @@ export default class Article extends React.Component {
 					  value={this.getFilterHtmlContent(this.state.articleHtml)}
 					/>
 
-					<CommentItem />
+					<CommentItem 
+						replies={this.state.replies}
+					/>
 				</View>
 			</ScrollView>
 		)
